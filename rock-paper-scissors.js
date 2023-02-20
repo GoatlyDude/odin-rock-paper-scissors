@@ -3,6 +3,31 @@
 function game() {
   let playerScore = 0;
   let cpuScore = 0;
+  for (let i = 0; i < 5; i++)
+  {
+    let round = playRound(getPlayerChoice(), getComputerChoice());
+    if (round === 1)
+    {
+      playerScore++
+    }
+    if (round === 0)
+    {
+      cpuScore++
+    }
+    
+  }
+  if (playerScore === cpuScore)
+  {
+    window.alert("You Tied the Game!");
+  }
+  if (playerScore > cpuScore)
+  {
+    window.alert("You Win the Game!");
+  }
+  else
+  {
+    window.alert("You Lose the Game!");
+  }
 }
 
 function getComputerChoice()
@@ -21,7 +46,7 @@ function getComputerChoice()
 
 function getPlayerChoice()
 {
-  const playerAnswer = window.prompt("Enter your choice", "rock");
+  const playerAnswer = window.prompt("Enter your choice", "");
   const firstChar = playerAnswer.charAt(0);
   const capFirstChar = firstChar.toUpperCase();
   const remainingChars = playerAnswer.slice(1)
@@ -35,25 +60,25 @@ function playRound(playerSelection, computerSelection)
   {
     window.alert("You Tied!"); 
   }
-  if (playerSelection === "Rock" && computerSelection === "Paper")
+  else if (playerSelection === "Rock" && computerSelection === "Paper")
   {
     window.alert("You Lose! Paper beats Rock");
-    cpuScore ++;
+    return 0;
   }
-  if (playerSelection === "Paper" && computerSelection === "Scissors")
+  else if (playerSelection === "Paper" && computerSelection === "Scissors")
   {
     window.alert("You Lose! Scissors beats Paper");
-    cpuScore ++;
+    return 0;
   }
-  if (playerSelection === "Scissors" && computerSelection === "Rock")
+  else if (playerSelection === "Scissors" && computerSelection === "Rock")
   {
     window.alert("You Lose! Rock beats Scissors");
-    cpuScore ++;
+    return 0;
   }
   else
   {
     window.alert("You Win!");
-    playerScore++;
+    return 1;
   }
 }
 
@@ -64,3 +89,5 @@ function GetRandomInt()
   const max = 4;
   return Math.floor(Math.random() * (max - min) + min);
 }
+
+game()
